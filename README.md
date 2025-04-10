@@ -27,10 +27,12 @@ The folder you choose should contain the following two subfolders:
 - **VTT**: The folder where the converted VTT files will be saved.
 
 **Example folder structure:**
-CourseFolder/
-  ├── SRT/
-  │   ├── file1.srt
-  │   ├── file2.srt
-  │   └── ...
-  └── VTT/
-      └── ...
+CourseFolder/  
+  ├── SRT/  
+  │   ├── file1.srt  
+  │   ├── file2.srt  
+  │   └── ...  
+  └── VTT/  
+      ├── file1.vtt  
+      ├── file2.vtt  
+      └── ...  
