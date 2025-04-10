@@ -26,7 +26,7 @@ The folder you choose should contain the following two subfolders:
 - **SRT**: The folder where your SRT files are stored (the ones to be converted).
 - **VTT**: The folder where the converted VTT files will be saved.
 
-> **Example folder structure:**
+**Example folder structure:**
 CourseFolder/
   ├── SRT/
   │   ├── file1.srt
