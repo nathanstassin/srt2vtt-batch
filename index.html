@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SRT to VTT Converter</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; padding: 20px; }
+        button { padding: 10px 20px; margin: 5px; }
+        #path { color: #666; margin: 10px 0; }
+        #log { margin-top: 20px; white-space: pre; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>SRT to VTT Converter</h1>
+    
+    <button id="browse">Select Folder</button>
+    <div id="path">No folder selected</div>
+    <button id="convert" disabled>Convert</button>
+    
+    <div id="log"></div>
+
+    <script>
+        let selectedPath = ''
+
+        document.getElementById('browse').addEventListener('click', async () => {
+            try {
+            const path = await window.api.selectDirectory()
+            if (path) {
+                selectedPath = path
+                document.getElementById('path').textContent = selectedPath
+                document.getElementById('convert').disabled = false
+            }
+            } catch (error) {
+            console.error('Directory selection failed:', error)
+            document.getElementById('log').textContent += `\n❌ Error: ${error.message}`
+            }
+        })
+
+        document.getElementById('convert').addEventListener('click', async () => {
+            const log = document.getElementById('log')
+            log.textContent = 'Starting conversion...\n'
+            
+            try {
+                await window.api.convert(selectedPath)
+                log.textContent += '\n✅ All files converted successfully!'
+            } catch (err) {
+                log.textContent += '\n❌ Error: ' + err
+            }
+        })
+
+        window.api.onProgress((event, { file, progress }) => {
+            const log = document.getElementById('log')
+            log.textContent += `Converted ${file} (${Math.round(progress * 100)}%)\n`
+            log.scrollTop = log.scrollHeight
+        })
+    </script>
+</body>
+</html>

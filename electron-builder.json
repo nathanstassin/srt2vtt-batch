@@ -1,0 +1,8 @@
+{
+    "appId": "com.example.srtconverter",
+    "productName": "SRT Converter",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": "dmg"
+    }
+  }
